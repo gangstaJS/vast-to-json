@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<VAST version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://specs.adfox.ru/uploads/vast.xsd">
+
+<Ad id="505037-1409697">
+<Wrapper>
+	<AdSystem>AdFox.Ru</AdSystem>
+	<!-- <VASTAdTagURI><![CDATA[http://ads.adfox.ru/175105/getCode?p1=beygm&p2=emxn&pfc=bcrnv&pfb=dbzrt&plp=a&pli=a&pop=a&puid1=&puid2=&puid3=&puid22=&puid25=&puid27=&puid31=&puid33=&puid51=&puid52=]]></VASTAdTagURI> -->
+
+	<!-- <VASTAdTagURI><![CDATA[http://ads.adfox.ru/175105/getCode?p1=beygm&p2=emxn&pfc=bcsbr&pfb=dcbri&plp=a&pli=a&pop=a&puid1=&puid2=&puid3=&puid22=&puid25=&puid27=&puid31=&puid33=&puid51=&puid52=]]></VASTAdTagURI> -->
+
+	<VASTAdTagURI><![CDATA[http://inv-nets.admixer.net/dsp.aspx?rct=3&zone=b6f2f9a5-0ae3-439d-a494-65e8b4cff076&zoneInt=8362&sect=2166&site=2030&rnd=762145183]]></VASTAdTagURI>
+<InLine>
+
+<AdTitle></AdTitle>
+<Error><![CDATA[http://ads.adfox.ru/175105/event?hash=31c4eb2422ac2d84&pm=u&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=bzmhqmi&p1=bktim&p2=emxn]]></Error>
+<Impression><![CDATA[http://ads.adfox.ru/175105/event?hash=218f46af0b8b8f01&pm=d&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=gwxruxo&p1=bktim&p2=emxn]]></Impression>
+
+<Creatives>
+
+<Creative>
+
+<Linear>
+
+<Duration>00:00:20</Duration>
+
+<TrackingEvents>
+
+<Tracking event="creativeView"><![CDATA[http://ads.adfox.ru/175105/event?hash=472b939847170228&pm=c&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=dbfnlnw&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="start"><![CDATA[http://ads.adfox.ru/175105/event?hash=87e01ac4f4a07174&pm=b&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=fuzztgi&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="midpoint"><![CDATA[http://ads.adfox.ru/175105/event?hash=55d6c1a73a5c5900&pm=f&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=ghahnxw&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="firstQuartile"><![CDATA[http://ads.adfox.ru/175105/event?hash=c0c9f843e674f04a&pm=e&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=bbuljot&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="thirdQuartile"><![CDATA[http://ads.adfox.ru/175105/event?hash=8de6aca34648e88e&pm=g&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=bpwxdvc&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="complete"><![CDATA[http://ads.adfox.ru/175105/event?hash=76fae5cc6ce0af88&pm=h&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=efjtadj&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="mute"><![CDATA[http://ads.adfox.ru/175105/event?hash=e1d4ee6d6293b149&pm=i&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=gtasegs&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="unmute"><![CDATA[http://ads.adfox.ru/175105/event?hash=550d17ca527ce744&pm=j&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=fzwzazy&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="pause"><![CDATA[http://ads.adfox.ru/175105/event?hash=098ab63e2153a98f&pm=k&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=ccqpmvn&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="rewind"><![CDATA[http://ads.adfox.ru/175105/event?hash=054fb98026ada873&pm=l&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=edjfgoa&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="resume"><![CDATA[http://ads.adfox.ru/175105/event?hash=279ff073f4754ab7&pm=m&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=fdumljs&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="fullscreen"><![CDATA[http://ads.adfox.ru/175105/event?hash=c906d66085194776&pm=n&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=ekliaoa&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="expand"><![CDATA[http://ads.adfox.ru/175105/event?hash=87faf0b3548bdbab&pm=o&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=blchvyo&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="collapse"><![CDATA[http://ads.adfox.ru/175105/event?hash=b8221b5f688aa311&pm=p&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=fvrzbyi&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="acceptInvitation"><![CDATA[http://ads.adfox.ru/175105/event?hash=7af62bd4d55ffe8d&pm=q&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=gonwie&p1=bktim&p2=emxn]]></Tracking>
+<Tracking event="close"><![CDATA[http://ads.adfox.ru/175105/event?hash=48e9ee7965276c86&pm=r&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=fhiobwl&p1=bktim&p2=emxn]]></Tracking>
+
+</TrackingEvents>
+
+<AdParameters></AdParameters>
+
+<VideoClicks>
+<ClickThrough><![CDATA[http://ads.adfox.ru/175105/goLink?puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&p1=bktim&p2=emxn@http://ua.hit.gemius.pl/lshitredir/id=bQblbULHyeQcYtelae6E.3amzSa15Rus2RC3Iq1ahAT.r7/fastid=nxdhyynmketsssmjponaxwwunwpb/stparam=lagpkjdkfv/url=http://pronutrilon.com/pronutra/?utm_source=ex&utm_medium=banner&utm_campaign=Nutrilon_autumn]]></ClickThrough>
+</VideoClicks>
+
+<MediaFiles>
+
+<MediaFile id="1" delivery="progressive" type="video/mp4" scalable="true" width="" height="">
+<![CDATA[http://meta.vcdn.biz/6c7302730ee0fc73d4b417dccd0d8b83_advideo/download/f/563302682/n/563302682.mp4]]>
+</MediaFile>
+
+</MediaFiles>
+
+</Linear>
+
+</Creative>
+
+</Creatives>
+
+
+
+<Extensions>
+<Extension type="startTime"><![CDATA[00:00]]></Extension>
+<Extension type="skipButton"><![CDATA[1]]></Extension>
+<Extension type="skipTime"><![CDATA[00:05]]></Extension>
+<Extension type="skipTime2"><![CDATA[00:05]]></Extension>
+<Extension type="linkTxt"><![CDATA[&#1055;&#1077;&#1088;&#1077;&#1081;&#1090;&#1080; &#1085;&#1072; &#1089;&#1072;&#1081;&#1090; &#1088;&#1077;&#1082;&#1083;&#1072;&#1084;&#1086;&#1076;&#1072;&#1090;&#1077;&#1083;&#1103;]]></Extension>
+<Extension type="isClickable"><![CDATA[1]]></Extension>
+<Extension type="skipAd"><![CDATA[http://ads.adfox.ru/175105/event?hash=e6852cca9ec8c92e&pm=s&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=cbhyons&p1=bktim&p2=emxn]]></Extension>
+<Extension type="addClick"><![CDATA[http://ads.adfox.ru/175105/event?hash=f64050d57ceb35a4&pm=t&lts=erkfufx&puid2=unknown&puid1=unknown&pr=bhcptz&p5=dcfjd&rand=cdmadic&p1=bktim&p2=emxn]]></Extension>
+<Extension type="fullScreen"><![CDATA[0]]></Extension>
+<Extension type="advert"><![CDATA[]]></Extension>
+<Extension type="branch"><![CDATA[]]></Extension>
+</Extensions> 
+
+</InLine>
+</Wrapper>
+</Ad>
+
+</VAST>
