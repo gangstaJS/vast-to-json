@@ -1,7 +1,7 @@
 'use strict';
 
-var $ = require('jquery');
 var process = require('./vast-get-wrappers');
+var mergeWrappers = require('./merge-wrappers');
 
 
 // --
@@ -13,7 +13,7 @@ function parseFullVAST(vast, isString) {
 
 	wrappers.then(function(wr) {
 
-		deferred.resolve(wr)
+		deferred.resolve( mergeWrappers(wr) );
 	
 	});
 

@@ -1,13 +1,14 @@
 'use strict';
 
-var $ = require('jquery');
 var parseVast = require('./parse-vast');
 
-var wrappers = [], deferred;
+var wrappers, deferred;
 
 // --
 
 function process(param, isString) {
+
+	wrappers = [];
 	
 	deferred = $.Deferred();
 
