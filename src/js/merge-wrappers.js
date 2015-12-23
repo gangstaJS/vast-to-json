@@ -17,7 +17,9 @@ function merge(wrappers) {
 	resultData.playerError = [];
 	resultData.vastClickThrough = wrappers[0].vastClickThrough;
 	resultData.vastEvents = {};
-	resultData.vastExtensions = {};
+	resultData.vastExtensions = {
+		addClick: []
+	};
 	resultData.vastImpression = [];
 
 	_.each(wrappers, function(el,n) {

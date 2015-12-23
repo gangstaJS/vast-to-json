@@ -226,16 +226,18 @@ var vtj =
 		var $mediaFiles = $vast.find('MediaFiles MediaFile'), media = $(), mediaData = null;
 
 		if ($mediaFiles.length) {
-			var vedeoEl = document.createElement('video');
+			var videoEl = document.createElement('video');
 
 			$mediaFiles.each(function(n,el) {
 
-			  var mediaType = $(this).attr('type');
+				var mediaType = $(this).attr('type'),
+				canPlay = videoEl.canPlayType( mediaType );
 
-				if((vedeoEl.canPlayType( mediaType ) == 'maybe') ||
-					(vedeoEl.canPlayType( mediaType ) == 'probably') ||
-					(mediaType == 'application/x-shockwave-flash') || // vpaid
-					(mediaType == 'text/html') // vpaid
+				if(
+					canPlay == 'maybe' ||
+					canPlay == 'probably' ||
+					mediaType == 'application/x-shockwave-flash' || // vpaid
+					mediaType == 'text/html' // vpaid
 				) {
 
 			    	// console.log('mediaType', mediaType);
@@ -312,7 +314,9 @@ var vtj =
 		resultData.playerError = [];
 		resultData.vastClickThrough = wrappers[0].vastClickThrough;
 		resultData.vastEvents = {};
-		resultData.vastExtensions = {};
+		resultData.vastExtensions = {
+			addClick: []
+		};
 		resultData.vastImpression = [];
 
 		_.each(wrappers, function(el,n) {
