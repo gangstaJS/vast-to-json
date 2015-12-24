@@ -18,7 +18,9 @@ function merge(wrappers) {
 	resultData.vastClickThrough = wrappers[0].vastClickThrough;
 	resultData.vastEvents = {};
 	resultData.vastExtensions = {
-		addClick: []
+		addClick: [''],
+		skipButton: [0],
+		isClickable: [1]
 	};
 	resultData.vastImpression = [];
 

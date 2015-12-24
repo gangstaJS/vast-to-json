@@ -82,6 +82,7 @@ function getMediaFiles($vast) {
 	  		mediaData.apiFramework = media.attr('apiFramework'),
 	  		mediaData.width = media.attr('width'),
 	  		mediaData.height = media.attr('height');
+	  		mediaData.duration = convertToSeconds( getText( $vast.find('Duration') ) );
 		}  
 
 	}
@@ -110,6 +111,26 @@ function hasWrapper($vast) {
 
 function getText($el) {
 	return $el.text().trim();
+}
+
+function convertToSeconds(time) {
+    var seconds = 0;
+    if (time) {
+        if (isFinite(time)) return parseInt(time);
+
+        var timesArr = time.split(':');
+        if (timesArr.length) {
+            if (timesArr.length == 2) {
+                // 00:00
+                seconds = parseInt(timesArr[0]) * 60 + parseInt(timesArr[1]);
+            } else if (timesArr.length >= 3) {
+                // 00:00:00
+                seconds = (parseInt(timesArr[0]) * 3600) + (parseInt(timesArr[1]) * 60) + parseInt(timesArr[2]);
+            }
+        }
+    }
+
+    return seconds;
 }
 
 module.exports = parseVast;

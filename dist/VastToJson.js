@@ -259,6 +259,7 @@ var vtj =
 		  		mediaData.apiFramework = media.attr('apiFramework'),
 		  		mediaData.width = media.attr('width'),
 		  		mediaData.height = media.attr('height');
+		  		mediaData.duration = convertToSeconds( getText( $vast.find('Duration') ) );
 			}  
 
 		}
@@ -289,6 +290,26 @@ var vtj =
 		return $el.text().trim();
 	}
 
+	function convertToSeconds(time) {
+	    var seconds = 0;
+	    if (time) {
+	        if (isFinite(time)) return parseInt(time);
+
+	        var timesArr = time.split(':');
+	        if (timesArr.length) {
+	            if (timesArr.length == 2) {
+	                // 00:00
+	                seconds = parseInt(timesArr[0]) * 60 + parseInt(timesArr[1]);
+	            } else if (timesArr.length >= 3) {
+	                // 00:00:00
+	                seconds = (parseInt(timesArr[0]) * 3600) + (parseInt(timesArr[1]) * 60) + parseInt(timesArr[2]);
+	            }
+	        }
+	    }
+
+	    return seconds;
+	}
+
 	module.exports = parseVast;
 
 /***/ },
@@ -315,7 +336,9 @@ var vtj =
 		resultData.vastClickThrough = wrappers[0].vastClickThrough;
 		resultData.vastEvents = {};
 		resultData.vastExtensions = {
-			addClick: []
+			addClick: [''],
+			skipButton: [0],
+			isClickable: [1]
 		};
 		resultData.vastImpression = [];
 
