@@ -21,7 +21,10 @@ function process(param, isString) {
 		wrappers.push(data);
 
 		if(!data.nobanner && data.hasWrapper) {
-			defer = vastRequest(param);
+
+			var url = data.VASTAdTagURL;
+
+			defer = vastRequest(url);
 			defer.then(d);
 		} else {
 			deferred.resolve(wrappers);
@@ -44,10 +47,11 @@ function d(xml) {
 
 	var data = parseVast(xml);
 
+
 	wrappers.push(data);
 
 	if(!data.nobanner && data.hasWrapper) {
-		url = data.VASTAdTagURI; // $vast.find('Ad Wrapper VASTAdTagURI').text();
+		url = data.VASTAdTagURL; // $vast.find('Ad Wrapper VASTAdTagURI').text();
 		defer = vastRequest(url);
 		defer.then(d);
 	} else {

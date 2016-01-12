@@ -20,7 +20,10 @@ function merge(wrappers) {
 	resultData.vastExtensions = {
 		addClick: [''],
 		skipButton: [0],
-		isClickable: [1]
+		isClickable: [1],
+		skipButton: [1],
+		skipAd: [''],
+		skipTime: ['00:00'],
 	};
 	resultData.vastImpression = [];
 
@@ -34,27 +37,29 @@ function merge(wrappers) {
 		// events
 		_.each(el.vastEvents, function(v,k) {
 
-			if(resultData.vastEvents[k]) {
-				if(v) resultData.vastEvents[k].push( v.trim() );
-			} else {
+			if(!resultData.vastEvents[k]) {
 				resultData.vastEvents[k] = [];
-				if(v) resultData.vastEvents[k].push( (isFinite(v) ? parseInt(v) : v.trim()) );
 			}
+
+			if(v) resultData.vastEvents[k].push( (isFinite(v) ? parseInt(v) : v.trim()) );
 
 		});
 
 		// extensions
 		_.each(el.vastExtensions, function(v,k) {
 
-			if(resultData.vastExtensions[k]) {
-				if(v) resultData.vastExtensions[k].push( (isFinite(v) ? parseInt(v) : v.trim()) );
-			} else {
+			if(!resultData.vastExtensions[k]) {
 				resultData.vastExtensions[k] = [];
-				if(v) resultData.vastExtensions[k].push( (isFinite(v) ? parseInt(v) : v.trim()) );
 			}
+
+			if(v) resultData.vastExtensions[k].push( (isFinite(v) ? parseInt(v) : v.trim()) );
 
 		});
 
+	});
+
+	_.each(resultData.vastExtensions, function(v,k) {
+		resultData.vastExtensions[k] = v[v.length - 1];
 	});
 
 	return resultData; //wrappers[0];

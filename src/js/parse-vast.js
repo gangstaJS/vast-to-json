@@ -13,7 +13,7 @@ function parseVast(vastDoc) {
    	data = {
 		nobanner: false,
 		hasWrapper: hasWrapper($vast),
-		VASTAdTagURI: $vast.find('Ad Wrapper VASTAdTagURI').text(),
+		VASTAdTagURL: getText($vast.find('Ad Wrapper VASTAdTagURL URL')),
 		vastClickThrough: '',
         vastImpression: '',
         playerError: ''
