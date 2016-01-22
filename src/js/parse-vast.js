@@ -63,8 +63,6 @@ function getMediaFiles($vast) {
 				mediaType == 'text/html' // vpaid
 			) {
 
-		    	// console.log('mediaType', mediaType);
-
 		    	media = $(this);
 		    	return false;
 
@@ -78,7 +76,7 @@ function getMediaFiles($vast) {
 			mediaData = {};
 
 			mediaData.type = media.attr('type'),
-	  		mediaData.src = media.text(),
+	  		mediaData.src = media.text().trim(),
 	  		mediaData.apiFramework = media.attr('apiFramework'),
 	  		mediaData.width = media.attr('width'),
 	  		mediaData.height = media.attr('height');

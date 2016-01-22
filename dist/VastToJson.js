@@ -259,7 +259,7 @@ var vtj =
 				mediaData = {};
 
 				mediaData.type = media.attr('type'),
-		  		mediaData.src = media.text(),
+		  		mediaData.src = media.text().trim(),
 		  		mediaData.apiFramework = media.attr('apiFramework'),
 		  		mediaData.width = media.attr('width'),
 		  		mediaData.height = media.attr('height');

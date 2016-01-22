@@ -1,0 +1,30 @@
+<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:noNamespaceSchemaLocation="vast.xsd">
+<Ad id="eb231d1f-9e8a-4591-8eca-c9a452aea6d3">
+<InLine>
+	<AdSystem version="2.0">ADMIXER_NETS</AdSystem>
+	<AdTitle>Admixer Ad</AdTitle>
+	<Description>Admixer Video non-linear</Description>
+		<Creatives>
+			<Creative sequence="1" AdID="62262">
+				<NonLinearAds>
+					<TrackingEvents>
+						<Tracking event="creativeView"><![CDATA[http://inv-nets.admixer.net/view.aspx?item=eb231d1f-9e8a-4591-8eca-					c9a452ae…page=www.ex.ua%2f96890192%3fr%3d2%2c23775%2f%40%40%40MaZjNUTPUW7Hhpw3mRjoc]]></Tracking>
+					</TrackingEvents>
+					<AdParameters>
+						<![CDATA[]]>
+					</AdParameters>
+					<NonLinear  height="200" width="200" minSuggestedDuration="00:00:15" scalable="false">
+						<StaticResource creativeType="text/html"> <![CDATA[http://ua2.admixer.net/test1/eb231d1f-9e8a-4591-8eca-					c9a452aea6d3/3a1f8365-6a0f-486b-bc05-855463c2247d.html]]></StaticResource>
+						<NonLinearClickThrough><![CDATA[http://inv-nets.admixer.net/click.aspx?item=eb231d1f-9e8a-4591-8eca-		c9a452a…page=www.ex.ua%2f96890192%3fr%3d2%2c23775%2f%40%40%40MaZjNUTPUW7Hhpw3mRjoc]]></NonLinearClickThrough>
+					</NonLinear>
+				</NonLinearAds>
+			</Creative>
+		</Creatives>
+	<Extensions>
+	<Extension type="skipTime">
+	<![CDATA[00:00]]>
+	</Extension>
+	</Extensions>
+</InLine>
+</Ad>
+</VAST>

@@ -4,7 +4,7 @@
   "description": "parse vast xml",
   "main": "index.js",
   "scripts": {
-    "start": "static-server",
+    "start": "webpack-dev-server --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,8 +18,7 @@
   },
   "homepage": "https://github.com/gangstaJS/vast-to-json#readme",
   "devDependencies": {
-    "jquery": "^2.1.4",
-    "static-server": "^2.0.0"
+    "jquery": "^2.1.4"
   },
   "dependencies": {
     "underscore": "^1.8.3"
