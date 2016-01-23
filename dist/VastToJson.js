@@ -53,7 +53,6 @@ var vtj =
 	* @param vast :string (url to vast document or vast string);
 	* @param isString :bool
 	*/
-
 	function vtj(vast, isString) {
 		if(isString == undefined) isString = false;
 		return parse(vast, isString);
@@ -68,7 +67,7 @@ var vtj =
 	'use strict';
 
 	var process = __webpack_require__(2);
-	var mergeWrappers = __webpack_require__(4);
+	var mergeWrappers = __webpack_require__(5);
 
 
 	// --
@@ -177,9 +176,18 @@ var vtj =
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	var _ = __webpack_require__(4);
+
+	var allowedInlineCreativeTypes = [
+		'text/html',
+		'image/jpeg',
+		'image/png',
+		'image/gif'
+	];
 
 	function parseVast(vastDoc) {
 
@@ -200,15 +208,21 @@ var vtj =
 	        playerError: ''
 		}
 
-		var $clickThrough = $vast.find('VideoClicks ClickThrough');
+		var $clickThrough = '';
+
+		if(isInline($vast)) {
+			$clickThrough = $vast.find('Creatives Creative').eq(0).find('NonLinearClickThrough');
+			data.media = getMediaFilesInline($vast);
+		} else {
+			$clickThrough = $vast.find('VideoClicks ClickThrough');
+			data.media = getMediaFiles($vast);
+		} 
+
+		
 	  
 	  	if($clickThrough.length) {
 	  		data.vastClickThrough = getText($clickThrough);
-	  	}
-
-	  	// --
-
-	  	data.media = getMediaFiles($vast);
+	  	}  	
 
 	  	// -- 
 	  	data.vastImpression   = getText($vast.find('Impression'));
@@ -224,7 +238,35 @@ var vtj =
 		return data;
 	}
 
+	function isInline($vast) {
+		return !!$vast.find('Creative NonLinearAds').length;
+	}
+
 	// --
+
+	function getMediaFilesInline($vast) {
+		var media = $vast.find('Creatives Creative'), mediaData = null;
+
+		if(media.length) {
+			mediaData = {};
+			var $NonLinear = media.find('NonLinear');
+			var $StaticResource = $NonLinear.find('StaticResource');
+
+			mediaData.type = $StaticResource.attr('creativeType');
+
+			if(_.contains(allowedInlineCreativeTypes, mediaData.type)) {
+				mediaData.src = getText($StaticResource),
+				mediaData.width = parseInt($NonLinear.attr('width')),
+				mediaData.height = parseInt($NonLinear.attr('height'));
+				mediaData.minSuggestedDuration = convertToSeconds( $NonLinear.attr('minSuggestedDuration') );
+
+				var sc = $NonLinear.attr('scalable');
+				mediaData.scalable = (sc == 'false' || sc == '0')?false:true;
+			}
+		}  
+
+		return mediaData;
+	}
 
 	function getMediaFiles($vast) {
 		var $mediaFiles = $vast.find('MediaFiles MediaFile'), media = $(), mediaData = null;
@@ -243,8 +285,6 @@ var vtj =
 					mediaType == 'application/x-shockwave-flash' || // vpaid
 					mediaType == 'text/html' // vpaid
 				) {
-
-			    	// console.log('mediaType', mediaType);
 
 			    	media = $(this);
 			    	return false;
@@ -318,79 +358,6 @@ var vtj =
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _ = __webpack_require__(5);
-
-	function merge(wrappers) {
-		var resultData = {};
-
-		// если нет рекламы для показа <nobanner /> или не было найдено поддерживаемого контента
-		if(wrappers[0].nobanner || (wrappers[wrappers.length-1].media == null)) { // TODO сделать проверку на nobanner для всех уровней врапперов.
-			return {nobanner: true};
-		}
-
-		// --
-
-		resultData.media = wrappers[wrappers.length-1].media;
-		resultData.nobanner = wrappers[0].nobanner;
-		resultData.playerError = [];
-		resultData.vastClickThrough = wrappers[0].vastClickThrough;
-		resultData.vastEvents = {};
-		resultData.vastExtensions = {
-			addClick: [''],
-			skipButton: [0],
-			isClickable: [1],
-			skipButton: [1],
-			skipAd: [''],
-			skipTime: ['00:00'],
-		};
-		resultData.vastImpression = [];
-
-		_.each(wrappers, function(el,n) {
-
-			if(el.playerError) resultData.playerError.push(el.playerError);
-
-			// impression
-			if(el.vastImpression) resultData.vastImpression.push(el.vastImpression);
-
-			// events
-			_.each(el.vastEvents, function(v,k) {
-
-				if(!resultData.vastEvents[k]) {
-					resultData.vastEvents[k] = [];
-				}
-
-				if(v) resultData.vastEvents[k].push( (isFinite(v) ? parseInt(v) : v.trim()) );
-
-			});
-
-			// extensions
-			_.each(el.vastExtensions, function(v,k) {
-
-				if(!resultData.vastExtensions[k]) {
-					resultData.vastExtensions[k] = [];
-				}
-
-				if(v) resultData.vastExtensions[k].push( (isFinite(v) ? parseInt(v) : v.trim()) );
-
-			});
-
-		});
-
-		_.each(resultData.vastExtensions, function(v,k) {
-			resultData.vastExtensions[k] = v[v.length - 1];
-		});
-
-		return resultData; //wrappers[0];
-	}
-
-	module.exports = merge;
-
-/***/ },
-/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
@@ -1942,6 +1909,78 @@ var vtj =
 	  }
 	}.call(this));
 
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _ = __webpack_require__(4);
+
+	function merge(wrappers) {
+		var resultData = {};
+		// если нет рекламы для показа <nobanner /> или не было найдено поддерживаемого контента
+		if(wrappers[0].nobanner || (wrappers[wrappers.length-1].media == null)) { // TODO сделать проверку на nobanner для всех уровней врапперов.
+			return {nobanner: true};
+		}
+
+		// --
+
+		resultData.media = wrappers[wrappers.length-1].media;
+		resultData.nobanner = wrappers[0].nobanner;
+		resultData.playerError = [];
+		resultData.vastClickThrough = wrappers[0].vastClickThrough;
+		resultData.vastEvents = {};
+		resultData.vastExtensions = {
+			addClick: [''],
+			skipButton: [0],
+			isClickable: [1],
+			skipButton: [1],
+			skipAd: [''],
+			skipTime: ['00:00'],
+		};
+		resultData.vastImpression = [];
+
+		_.each(wrappers, function(el,n) {
+
+			if(el.playerError) resultData.playerError.push(el.playerError);
+
+			// impression
+			if(el.vastImpression) resultData.vastImpression.push(el.vastImpression);
+
+			// events
+			_.each(el.vastEvents, function(v,k) {
+
+				if(!resultData.vastEvents[k]) {
+					resultData.vastEvents[k] = [];
+				}
+
+				if(v) resultData.vastEvents[k].push( (isFinite(v) ? parseInt(v) : v.trim()) );
+
+			});
+
+			// extensions
+			_.each(el.vastExtensions, function(v,k) {
+
+				if(!resultData.vastExtensions[k]) {
+					resultData.vastExtensions[k] = [];
+				}
+
+				if(v) resultData.vastExtensions[k].push( (isFinite(v) ? parseInt(v) : v.trim()) );
+
+			});
+
+		});
+
+		_.each(resultData.vastExtensions, function(v,k) {
+			resultData.vastExtensions[k] = v[v.length - 1];
+		});
+
+		return resultData; //wrappers[0];
+	}
+
+	module.exports = merge;
 
 /***/ }
 /******/ ]);

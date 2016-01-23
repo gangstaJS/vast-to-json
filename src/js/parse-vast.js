@@ -1,5 +1,14 @@
 'use strict';
 
+var _ = require('underscore');
+
+var allowedInlineCreativeTypes = [
+	'text/html',
+	'image/jpeg',
+	'image/png',
+	'image/gif'
+];
+
 function parseVast(vastDoc) {
 
 	var $vast = $(vastDoc), data;
@@ -19,15 +28,21 @@ function parseVast(vastDoc) {
         playerError: ''
 	}
 
-	var $clickThrough = $vast.find('VideoClicks ClickThrough');
+	var $clickThrough = '';
+
+	if(isInline($vast)) {
+		$clickThrough = $vast.find('Creatives Creative').eq(0).find('NonLinearClickThrough');
+		data.media = getMediaFilesInline($vast);
+	} else {
+		$clickThrough = $vast.find('VideoClicks ClickThrough');
+		data.media = getMediaFiles($vast);
+	} 
+
+	
   
   	if($clickThrough.length) {
   		data.vastClickThrough = getText($clickThrough);
-  	}
-
-  	// --
-
-  	data.media = getMediaFiles($vast);
+  	}  	
 
   	// -- 
   	data.vastImpression   = getText($vast.find('Impression'));
@@ -43,7 +58,35 @@ function parseVast(vastDoc) {
 	return data;
 }
 
+function isInline($vast) {
+	return !!$vast.find('Creative NonLinearAds').length;
+}
+
 // --
+
+function getMediaFilesInline($vast) {
+	var media = $vast.find('Creatives Creative'), mediaData = null;
+
+	if(media.length) {
+		mediaData = {};
+		var $NonLinear = media.find('NonLinear');
+		var $StaticResource = $NonLinear.find('StaticResource');
+
+		mediaData.type = $StaticResource.attr('creativeType');
+
+		if(_.contains(allowedInlineCreativeTypes, mediaData.type)) {
+			mediaData.src = getText($StaticResource),
+			mediaData.width = parseInt($NonLinear.attr('width')),
+			mediaData.height = parseInt($NonLinear.attr('height'));
+			mediaData.minSuggestedDuration = convertToSeconds( $NonLinear.attr('minSuggestedDuration') );
+
+			var sc = $NonLinear.attr('scalable');
+			mediaData.scalable = (sc == 'false' || sc == '0')?false:true;
+		}
+	}  
+
+	return mediaData;
+}
 
 function getMediaFiles($vast) {
 	var $mediaFiles = $vast.find('MediaFiles MediaFile'), media = $(), mediaData = null;

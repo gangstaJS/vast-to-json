@@ -4,7 +4,6 @@ var _ = require('underscore');
 
 function merge(wrappers) {
 	var resultData = {};
-
 	// если нет рекламы для показа <nobanner /> или не было найдено поддерживаемого контента
 	if(wrappers[0].nobanner || (wrappers[wrappers.length-1].media == null)) { // TODO сделать проверку на nobanner для всех уровней врапперов.
 		return {nobanner: true};
