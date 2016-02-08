@@ -1934,7 +1934,6 @@ var vtj =
 		resultData.vastEvents = {};
 		resultData.vastExtensions = {
 			addClick: [''],
-			skipButton: [0],
 			isClickable: [1],
 			skipButton: [1],
 			skipAd: [''],
